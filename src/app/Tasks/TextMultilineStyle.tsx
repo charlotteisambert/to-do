@@ -29,22 +29,22 @@ const TextMultilineStyle = makeStyles(() => ({
     cursor: "pointer",
     padding: ".6rem",
     "&:hover": {
-        transform: "scale(1.2)",
-      },
+      transform: "scale(1.2)",
+    },
   },
   checked: {
     cursor: "pointer",
     color: "purple",
     "&:hover": {
-        transform: "scale(1.2)",
-      },
+      transform: "scale(1.2)",
+    },
   },
   notChecked: {
     cursor: "pointer",
     color: "#B5B1B1",
     "&:hover": {
-        transform: "scale(1.2)",
-      },
+      transform: "scale(1.2)",
+    },
   },
 }));
 
