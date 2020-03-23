@@ -9,7 +9,7 @@ Projet réalisé lorsque j'ai commencé à coder en **React** (version 16, avec 
 
 Application web contenant une to-do list qui permet d'ajouter des tâches, de les supprimer, de les check et uncheck. Un petit aperçu ci-dessous :
 
-![Screenshot to-do](/public/to-do-screenshot.png)
+![screenshot-to-do](/public/screenshot-to-do.png)
 
 
 Pour voir comment appliquer un **Design Pattern** en Javascript, j'ai intégré à mon projet une **Factory**. Il y a ainsi différents types de tâche : petit texte, grand texte et nombre. Ceux-ci sont différenciés principalement par leur couleur. De ce fait, leur code est très similaire, mais on pourrait imaginer d'autres disparités ou bien d'autres types de tâche (date, liste, etc.).
