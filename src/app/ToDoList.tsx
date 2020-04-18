@@ -16,34 +16,34 @@ function ToDoList(): React.ReactElement {
 
   function renderTask(task: TaskInterface) {
     switch (task.type) {
-      case TASK_TYPES.NUMBER:
-        return (
-          <Number
-            description={task.description}
-            onDeletion={() => handleDeletion(task.id)}
-            checked={task.checked}
-            onCheck={() => handleCheck(task.id)}
-          />
-        );
-      case TASK_TYPES.MULTILINE:
-        return (
-          <TextMultiline
-            description={task.description}
-            onDeletion={() => handleDeletion(task.id)}
-            checked={task.checked}
-            onCheck={() => handleCheck(task.id)}
-          />
-        );
-      case TASK_TYPES.TEXT:
-      default:
-        return (
-          <Text
-            description={task.description}
-            onDeletion={() => handleDeletion(task.id)}
-            checked={task.checked}
-            onCheck={() => handleCheck(task.id)}
-          />
-        );
+    case TASK_TYPES.NUMBER:
+      return (
+        <Number
+          description={task.description}
+          onDeletion={() => handleDeletion(task.id)}
+          checked={task.checked}
+          onCheck={() => handleCheck(task.id)}
+        />
+      );
+    case TASK_TYPES.MULTILINE:
+      return (
+        <TextMultiline
+          description={task.description}
+          onDeletion={() => handleDeletion(task.id)}
+          checked={task.checked}
+          onCheck={() => handleCheck(task.id)}
+        />
+      );
+    case TASK_TYPES.TEXT:
+    default:
+      return (
+        <Text
+          description={task.description}
+          onDeletion={() => handleDeletion(task.id)}
+          checked={task.checked}
+          onCheck={() => handleCheck(task.id)}
+        />
+      );
     }
   }
 

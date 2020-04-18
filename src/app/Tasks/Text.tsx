@@ -1,12 +1,12 @@
 import React from "react";
+import StarRoundedIcon from "@material-ui/icons/StarRounded";
 import { TaskProps } from "./TaskInterfaces";
-import Task from "./Task"
-import StarRoundedIcon from '@material-ui/icons/StarRounded';
-import { TASK_TYPES_NAMES } from "./../constants";
+import Task from "./Task";
+import { TASK_TYPES_NAMES } from "../constants";
 
 const style = {
   color: "#ffe807",
-}
+};
 
 function Text({
   description,
@@ -14,7 +14,6 @@ function Text({
   checked,
   onCheck,
 }: TaskProps): React.ReactElement {
-
   return (
     <Task
       description={description}

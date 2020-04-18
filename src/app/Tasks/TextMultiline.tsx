@@ -1,12 +1,12 @@
 import React from "react";
+import FiberManualRecordRoundedIcon from "@material-ui/icons/FiberManualRecordRounded";
 import { TaskProps } from "./TaskInterfaces";
-import Task from "./Task"
-import FiberManualRecordRoundedIcon from '@material-ui/icons/FiberManualRecordRounded';
-import { TASK_TYPES_NAMES } from "./../constants";
+import Task from "./Task";
+import { TASK_TYPES_NAMES } from "../constants";
 
 const style = {
   color: "#7b188d",
-}
+};
 
 function TextMultiline({
   description,
@@ -14,7 +14,6 @@ function TextMultiline({
   checked,
   onCheck,
 }: TaskProps): React.ReactElement {
-
   return (
     <Task
       description={description}

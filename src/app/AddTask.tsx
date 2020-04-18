@@ -50,38 +50,38 @@ function AddTask({
 
   function renderInput(type: string) {
     switch (type) {
-      case TASK_TYPES.NUMBER:
-        return (
-          <TextField
-            type={type}
-            value={description}
-            onChange={(event) => setDescription(event.currentTarget.value)}
-            error={!!error}
-          />
-        );
-      case TASK_TYPES.MULTILINE:
-        return (
-          <TextField
-            type={type}
-            value={description}
-            onChange={(event) => setDescription(event.currentTarget.value)}
-            error={!!error}
-            multiline
-            rows="4"
-            inputProps={{ maxLength: 200 }}
-          />
-        );
-      case TASK_TYPES.TEXT:
-      default:
-        return (
-          <TextField
-            type={type}
-            value={description}
-            onChange={(event) => setDescription(event.currentTarget.value)}
-            error={!!error}
-            inputProps={{ maxLength: 40 }}
-          />
-        );
+    case TASK_TYPES.NUMBER:
+      return (
+        <TextField
+          type={type}
+          value={description}
+          onChange={(event) => setDescription(event.currentTarget.value)}
+          error={!!error}
+        />
+      );
+    case TASK_TYPES.MULTILINE:
+      return (
+        <TextField
+          type={type}
+          value={description}
+          onChange={(event) => setDescription(event.currentTarget.value)}
+          error={!!error}
+          multiline
+          rows="4"
+          inputProps={{ maxLength: 200 }}
+        />
+      );
+    case TASK_TYPES.TEXT:
+    default:
+      return (
+        <TextField
+          type={type}
+          value={description}
+          onChange={(event) => setDescription(event.currentTarget.value)}
+          error={!!error}
+          inputProps={{ maxLength: 40 }}
+        />
+      );
     }
   }
 
@@ -109,9 +109,21 @@ function AddTask({
               onChange={handleTaskTypeChange}
               name="type"
             >
-              <option value={TASK_TYPES.TEXT}> {TASK_TYPES_NAMES.TEXT} </option>
-              <option value={TASK_TYPES.MULTILINE}> {TASK_TYPES_NAMES.MULTILINE} </option>
-              <option value={TASK_TYPES.NUMBER}> {TASK_TYPES_NAMES.NUMBER} </option>
+              <option value={TASK_TYPES.TEXT}>
+                {" "}
+                {TASK_TYPES_NAMES.TEXT}
+                {" "}
+              </option>
+              <option value={TASK_TYPES.MULTILINE}>
+                {" "}
+                {TASK_TYPES_NAMES.MULTILINE}
+                {" "}
+              </option>
+              <option value={TASK_TYPES.NUMBER}>
+                {" "}
+                {TASK_TYPES_NAMES.NUMBER}
+                {" "}
+              </option>
             </NativeSelect>
           </FormControl>
         </Grid>
