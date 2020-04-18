@@ -5,11 +5,11 @@ export const theme = createMuiTheme({
   palette: {
     primary: {
       light: "#DBE9F5",
-      main: blueGrey[700],
+      main: "#223958",
     },
     text: {
-      primary: blueGrey[700],
-      secondary: "#ffffff",
+      primary: "#223958",
+      secondary: "#DBE9F5",
     }
   },
 });

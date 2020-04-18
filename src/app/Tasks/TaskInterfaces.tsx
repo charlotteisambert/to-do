@@ -1,8 +1,8 @@
 export interface TaskProps {
     description: string;
-    handleDeletion: () => void;
+    onDeletion: () => void;
     checked: boolean;
-    onCheck:()=>void;
+    onCheck: () => void;
 }
 
 export interface TaskInterface {

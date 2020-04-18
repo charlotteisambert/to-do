@@ -1,6 +1,6 @@
-import { makeStyles, createStyles, Theme } from "@material-ui/core";
+import { makeStyles, Theme } from "@material-ui/core";
 
-const AddTaskStyle = makeStyles((theme: Theme) => createStyles({
+const AddTaskStyle = makeStyles((theme: Theme) => ({
   wrapperAddTAsk: {
     background: theme.palette.primary.light,
     border: `2px solid ${theme.palette.primary.main}`,

@@ -1,40 +1,31 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
-import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
-import { TaskProps } from "../TaskInterfaces";
-import NumberStyle from "./NumberStyle";
+import { TaskProps } from "./TaskInterfaces";
+import Task from "./Task"
+import StopRoundedIcon from '@material-ui/icons/StopRounded';
+import { TASK_TYPES_NAMES } from "./../constants";
+
+const style = {
+  color: "#bd3e5e",
+}
 
 function Number({
   description,
-  handleDeletion,
+  onDeletion,
   checked,
   onCheck,
 }: TaskProps): React.ReactElement {
-  const classes = NumberStyle();
 
   return (
-    <Grid container item sm={12} className={classes.wrapperTask}>
-      <Grid container item sm={2} alignItems="center" justify="center" className={classes.wrapperChecked}>
-        <CheckCircleOutlineIcon fontSize="large" onClick={onCheck} className={checked ? classes.checked : classes.notChecked} />
-      </Grid>
-      <Grid container item sm={9} direction="column" justify="space-between" className={classes.wrapperDescription}>
-        <Grid container item>
-          <Typography variant="h5" color="textPrimary" className={classes.description}>
-            Your number is:
-            {" "}
-            {description}
-          </Typography>
-        </Grid>
-        <Grid container item>
-          <Typography variant="body2" color="textPrimary">Type: Number</Typography>
-        </Grid>
-      </Grid>
-      <Grid container item sm={1} direction="column" alignItems="flex-end">
-        <DeleteOutlineOutlinedIcon color="error" fontSize="small" onClick={handleDeletion} className={classes.delete} />
-      </Grid>
-    </Grid>
+    <Task
+      description={"Your number is : " + description}
+      onDeletion={onDeletion}
+      checked={checked}
+      onCheck={onCheck}
+      taskType={TASK_TYPES_NAMES.NUMBER}
+      pin={
+        <StopRoundedIcon style={style} />
+      }
+    />
   );
 }
 

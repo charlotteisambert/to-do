@@ -6,8 +6,8 @@ import NativeSelect from "@material-ui/core/NativeSelect";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import AddTaskStyle from "./AddTaskStyle";
-import { TaskInterface } from "./TaskInterfaces";
-import { TASK_TYPES } from "./constants";
+import { TaskInterface } from "./Tasks/TaskInterfaces";
+import { TASK_TYPES, TASK_TYPES_NAMES } from "./constants";
 
 interface AddTaskrops {
   handleTaskAdd: (task: TaskInterface) => void
@@ -28,7 +28,7 @@ function AddTask({
 
   function onTaskAdd() {
     if (!description) {
-      setError("Please add a description to your to-do");
+      setError("Add a description to your to-do");
       return;
     }
     handleTaskAdd({
@@ -50,38 +50,38 @@ function AddTask({
 
   function renderInput(type: string) {
     switch (type) {
-    case TASK_TYPES.NUMBER:
-      return (
-        <TextField
-          type={type}
-          value={description}
-          onChange={(event) => setDescription(event.currentTarget.value)}
-          error={!!error}
-        />
-      );
-    case TASK_TYPES.MULTILINE:
-      return (
-        <TextField
-          type={type}
-          value={description}
-          onChange={(event) => setDescription(event.currentTarget.value)}
-          error={!!error}
-          multiline
-          rows="4"
-          inputProps={{ maxLength: 200 }}
-        />
-      );
-    case TASK_TYPES.TEXT:
-    default:
-      return (
-        <TextField
-          type={type}
-          value={description}
-          onChange={(event) => setDescription(event.currentTarget.value)}
-          error={!!error}
-          inputProps={{ maxLength: 40 }}
-        />
-      );
+      case TASK_TYPES.NUMBER:
+        return (
+          <TextField
+            type={type}
+            value={description}
+            onChange={(event) => setDescription(event.currentTarget.value)}
+            error={!!error}
+          />
+        );
+      case TASK_TYPES.MULTILINE:
+        return (
+          <TextField
+            type={type}
+            value={description}
+            onChange={(event) => setDescription(event.currentTarget.value)}
+            error={!!error}
+            multiline
+            rows="4"
+            inputProps={{ maxLength: 200 }}
+          />
+        );
+      case TASK_TYPES.TEXT:
+      default:
+        return (
+          <TextField
+            type={type}
+            value={description}
+            onChange={(event) => setDescription(event.currentTarget.value)}
+            error={!!error}
+            inputProps={{ maxLength: 40 }}
+          />
+        );
     }
   }
 
@@ -109,9 +109,9 @@ function AddTask({
               onChange={handleTaskTypeChange}
               name="type"
             >
-              <option value={TASK_TYPES.TEXT}>Small text</option>
-              <option value={TASK_TYPES.MULTILINE}>Big text</option>
-              <option value={TASK_TYPES.NUMBER}>Number</option>
+              <option value={TASK_TYPES.TEXT}> {TASK_TYPES_NAMES.TEXT} </option>
+              <option value={TASK_TYPES.MULTILINE}> {TASK_TYPES_NAMES.MULTILINE} </option>
+              <option value={TASK_TYPES.NUMBER}> {TASK_TYPES_NAMES.NUMBER} </option>
             </NativeSelect>
           </FormControl>
         </Grid>

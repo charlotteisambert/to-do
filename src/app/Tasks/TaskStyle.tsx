@@ -1,29 +1,20 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Theme } from "@material-ui/core";
 
-const TextMultilineStyle = makeStyles(() => ({
+const TaskStyle = makeStyles((theme: Theme) => ({
   wrapperTask: {
-    border: "2px solid purple",
-    backgroundColor: "#EBDDF9",
+    border: `2px solid ${theme.palette.primary.main}`,
+    backgroundColor: "#f9fbfd",
     borderRadius: "1rem",
     minHeight: "7rem",
     "&:hover": {
-      backgroundColor: "#DEB4F3",
+      backgroundColor: theme.palette.primary.light,
     },
-  },
-  wrapperChecked: {
-    height: "100%",
-    padding: "0rem 1rem",
-  },
-  wrapperDescription: {
-    height: "100%",
-    padding: "1rem 0",
-    overflow: "hidden",
   },
   description: {
     wordBreak: "break-word",
   },
-  wrapperUpDown: {
-    height: "100%",
+  wrapperType: {
+    padding: "1rem 0",
   },
   delete: {
     cursor: "pointer",
@@ -34,7 +25,7 @@ const TextMultilineStyle = makeStyles(() => ({
   },
   checked: {
     cursor: "pointer",
-    color: "purple",
+    color: theme.palette.primary.main,
     "&:hover": {
       transform: "scale(1.2)",
     },
@@ -48,4 +39,4 @@ const TextMultilineStyle = makeStyles(() => ({
   },
 }));
 
-export default TextMultilineStyle;
+export default TaskStyle;
