@@ -34,4 +34,4 @@ Pour pouvoir lancer le projet en local, il faut executer ces commandes :
 
 `yarn start`
 
-Sinon clickez ici : https://charlotteisambert.github.io/to-do/
+Sinon cliquez ici : https://charlotteisambert.github.io/to-do/
