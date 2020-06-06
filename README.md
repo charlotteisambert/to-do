@@ -1,6 +1,9 @@
 
 # To-do
 
+## Lien
+https://charlotteisambert.github.io/to-do/
+
 ## Contexte
 
 Projet réalisé lorsque j'ai commencé à coder en **React** (version 16, avec hooks) et **Typescript** au début de mon stage de fin d'études, en janvier 2020, pour appréhender les technologies utilisées sur le projet.
@@ -30,3 +33,5 @@ Pour pouvoir lancer le projet en local, il faut executer ces commandes :
 `yarn install`
 
 `yarn start`
+
+Sinon clickez ici : https://charlotteisambert.github.io/to-do/
