@@ -9,7 +9,7 @@ function App(): React.ReactElement {
 
   return (
     <Grid container justify="center">
-      <Grid container item sm={4} className={classes.wrapperApp}>
+      <Grid container item sm={5} className={classes.wrapperApp}>
         <Grid item sm={12} className={classes.wrapperTitle}>
           <Typography variant="h3" color="textPrimary" align="center" className={classes.title}>To-do list</Typography>
         </Grid>
