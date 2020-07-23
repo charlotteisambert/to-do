@@ -1,17 +1,28 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { Task } from './interfaces/task.interface';
 import { TasksArgs } from './dto/tasks.args';
+import { TaskSchema } from './../schemas/task.schema';
+import { Model } from 'mongoose';
+import { NewTaskInput } from './dto/new-task.input';
 
 @Injectable()
 export class TasksService {
-    private readonly tasks: Task[] = [{ id: "1", description: "myTask" }];
+    constructor(
+        @Inject('TASK_MODEL')
+        private taskModel: Model<Task>,
+    ) { }
 
     findOneById(id: string): Promise<Task> {
-        return this.tasks.find(task => task.id === id) as any;
+        return this.taskModel.findById(id).exec();
     }
 
-    async findAll(recipesArgs: TasksArgs): Promise<Task[]> {
-        return this.tasks as Task[];
+    async findAll(tasksArgs: TasksArgs): Promise<Task[]> {
+        return this.taskModel.find().exec();
+    }
+
+    async create(createTaskDto: NewTaskInput): Promise<Task> {
+        const createdCat = new this.taskModel(createTaskDto);
+        return createdCat.save();
     }
 
 }

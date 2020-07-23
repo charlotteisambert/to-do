@@ -11,3 +11,11 @@ type Query {
   tasks: [Task!]!
   task(id: String!): Task!
 }
+
+type Mutation {
+  addTask(newTaskData: NewTaskInput!): Task!
+}
+
+input NewTaskInput {
+  description: String!
+}

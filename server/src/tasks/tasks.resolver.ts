@@ -3,6 +3,7 @@ import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
 import { Task } from './models/task.model';
 import { TasksService } from './tasks.service';
 import { TasksArgs } from './dto/tasks.args';
+import { NewTaskInput } from './dto/new-task.input';
 
 @Resolver(of => Task)
 export class TasksResolver {
@@ -12,7 +13,7 @@ export class TasksResolver {
 
     @Query(returns => [Task])
     tasks(@Args() tasksArgs: TasksArgs): Promise<Task[]> {
-      return this.tasksService.findAll(tasksArgs);
+        return this.tasksService.findAll(tasksArgs);
     }
 
     @Query(returns => Task)
@@ -23,4 +24,13 @@ export class TasksResolver {
         }
         return recipe;
     }
+
+    @Mutation(returns => Task)
+    async addTask(
+        @Args('newTaskData') newTaskData: NewTaskInput,
+    ): Promise<Task> {
+        const task = await this.tasksService.create(newTaskData);
+        return task;
+    }
+
 }
