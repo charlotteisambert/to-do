@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TasksModule } from "./tasks/tasks.module";
-import { DatabaseModule } from "./database.module";
+import { DatabaseModule } from "./database/database.module";
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { URL } from "./constants";
