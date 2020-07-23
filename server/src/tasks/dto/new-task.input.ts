@@ -1,7 +1,11 @@
 import { Field, InputType } from '@nestjs/graphql';
+import { TaskType } from "./../models/task.model"
 
 @InputType()
 export class NewTaskInput {
     @Field()
-    description?: string;
+    description: string;
+
+    @Field()
+    type: TaskType;
 }

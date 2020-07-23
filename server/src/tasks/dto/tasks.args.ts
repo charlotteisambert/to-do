@@ -1,4 +1,4 @@
-import { ArgsType, Field, Int } from '@nestjs/graphql';
+import { ArgsType } from '@nestjs/graphql';
 
 @ArgsType()
 export class TasksArgs {

@@ -4,7 +4,14 @@
 
 type Task {
   id: ID!
-  description: String
+  description: String!
+  type: TaskType!
+}
+
+enum TaskType {
+  TEXT
+  NUMBER
+  TEXT_MULTILINE
 }
 
 type Query {
@@ -18,4 +25,5 @@ type Mutation {
 
 input NewTaskInput {
   description: String!
+  type: String!
 }
