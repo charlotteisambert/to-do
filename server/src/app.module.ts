@@ -4,6 +4,7 @@ import { TasksModule } from "./tasks/tasks.module";
 import { DatabaseModule } from "./database.module";
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
+import { URL } from "./constants";
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { join } from 'path';
     TypeOrmModule.forRoot({
       type: 'mongodb',
       url:
-        'mongodb://localhost/nest',
+        URL,
       entities: [join(__dirname, '**/**.entity{.ts,.js}')],
       synchronize: true,
       useNewUrlParser: true,

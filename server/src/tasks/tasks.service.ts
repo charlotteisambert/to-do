@@ -4,11 +4,12 @@ import { TasksArgs } from './dto/tasks.args';
 import { TaskSchema } from './../schemas/task.schema';
 import { Model } from 'mongoose';
 import { NewTaskInput } from './dto/new-task.input';
+import { TASK_MODEL } from "./../constants";
 
 @Injectable()
 export class TasksService {
     constructor(
-        @Inject('TASK_MODEL')
+        @Inject(TASK_MODEL)
         private taskModel: Model<Task>,
     ) { }
 
