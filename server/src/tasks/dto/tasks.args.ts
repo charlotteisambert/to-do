@@ -1,5 +1,10 @@
-import { ArgsType } from '@nestjs/graphql';
+import { ArgsType, Field } from '@nestjs/graphql';
 
 @ArgsType()
-export class TasksArgs {
+export class CheckTasksArgs {
+    @Field()
+    id: string;
+
+    @Field()
+    checked: Boolean;
 }

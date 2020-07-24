@@ -6,6 +6,7 @@ export const getTasks = gql`
             id
             description
             type
+            checked
         }
     }
 `;
@@ -13,9 +14,10 @@ export const getTasks = gql`
 export const createTask = gql`
     mutation createTask($NewTaskInput:NewTaskInput!){
         addTask(newTaskData:$NewTaskInput){
-        id 
-        description
-        type
+            id 
+            description
+            type
+            checked
         }
     }
 `;
@@ -24,7 +26,6 @@ export const deleteTask = gql`
     mutation deleteTask($id: String!) {
         deleteTask(id: $id) {
             id
-            description
         }
     }
 `;

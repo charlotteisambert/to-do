@@ -2,7 +2,7 @@ import { NotFoundException } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
 import { Task } from './models/task.model';
 import { TasksService } from './tasks.service';
-import { TasksArgs } from './dto/tasks.args';
+import { CheckTasksArgs } from './dto/tasks.args';
 import { NewTaskInput } from './dto/new-task.input';
 
 @Resolver(of => Task)
@@ -12,8 +12,8 @@ export class TasksResolver {
     ) { }
 
     @Query(returns => [Task])
-    tasks(@Args() tasksArgs: TasksArgs): Promise<Task[]> {
-        return this.tasksService.findAll(tasksArgs);
+    tasks(): Promise<Task[]> {
+        return this.tasksService.findAll();
     }
 
     @Query(returns => Task)
@@ -36,6 +36,12 @@ export class TasksResolver {
     @Mutation(returns => Task)
     async deleteTask(@Args('id') id: string): Promise<Task> {
         const task = await this.tasksService.deleteOne(id);
+        return task;
+    }
+    
+    @Mutation(returns => Task)
+    async checkTask(@Args() checkTasksArgs: CheckTasksArgs): Promise<Task> {
+        const task = await this.tasksService.update(checkTasksArgs);
         return task;
     }
 

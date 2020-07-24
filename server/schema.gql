@@ -23,6 +23,7 @@ type Query {
 type Mutation {
   addTask(newTaskData: NewTaskInput!): Task!
   deleteTask(id: String!): Task!
+  checkTask(id: String!, checked: Boolean!): Task!
 }
 
 input NewTaskInput {

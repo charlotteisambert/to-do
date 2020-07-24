@@ -1,7 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Task } from './interfaces/task.interface';
-import { TasksArgs } from './dto/tasks.args';
-import { TaskSchema } from './../schemas/task.schema';
+import { CheckTasksArgs } from './dto/tasks.args';
 import { Model } from 'mongoose';
 import { NewTaskInput } from './dto/new-task.input';
 import { TASK_MODEL } from "./../constants";
@@ -17,7 +16,7 @@ export class TasksService {
         return this.taskModel.findById(id).exec();
     }
 
-    async findAll(tasksArgs: TasksArgs): Promise<Task[]> {
+    async findAll(): Promise<Task[]> {
         return this.taskModel.find().exec();
     }
 
@@ -28,6 +27,13 @@ export class TasksService {
 
     async deleteOne(id: string): Promise<Task> {
         return this.taskModel.findByIdAndRemove(id).exec();
+    }
+
+    async update(checkTasksArgs: CheckTasksArgs): Promise<Task> {
+        return this.taskModel.findOneAndUpdate(
+            { _id: checkTasksArgs.id },
+            { checked: checkTasksArgs.checked }
+        ).exec();
     }
 
 }
