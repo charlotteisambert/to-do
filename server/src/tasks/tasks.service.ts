@@ -32,7 +32,8 @@ export class TasksService {
     async update(checkTasksArgs: CheckTasksArgs): Promise<Task> {
         return this.taskModel.findOneAndUpdate(
             { _id: checkTasksArgs.id },
-            { checked: checkTasksArgs.checked }
+            { checked: checkTasksArgs.checked },
+            {new: true}
         ).exec();
     }
 
