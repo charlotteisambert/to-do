@@ -10,13 +10,30 @@ import { TaskInterface } from "./Tasks/TaskInterfaces";
 import { TASK_TYPES, TASK_TYPES_NAMES } from "./constants";
 import { useMutation } from "@apollo/client";
 import { createTask as CREATE_TASK } from "./../graphql";
+import { getTasks as GET_TASKS } from "./../graphql";
 
 function AddTask(): React.ReactElement {
   const [description, setDescription] = useState<string>("");
   const [type, setType] = useState<string>(TASK_TYPES.TEXT);
   const [error, setError] = useState<string | null>();
   const classes = AddTaskStyle();
-  const [addTask] = useMutation(CREATE_TASK);
+  const [addTask] = useMutation(CREATE_TASK, {
+    update(cache, { data }) {
+      updateCache(cache, data);
+    },
+  });
+
+  function updateCache(cache: any, data: any) {
+    const tasksData = cache.readQuery({
+      query: GET_TASKS,
+    });
+    cache.writeQuery({
+      query: GET_TASKS,
+      data: {
+        tasks: [...tasksData.tasks, data.addTask],
+      },
+    });
+  }
 
   function handleTaskTypeChange(event: React.ChangeEvent<HTMLSelectElement>): void {
     setType(event.currentTarget.value);
