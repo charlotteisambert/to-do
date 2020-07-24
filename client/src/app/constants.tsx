@@ -1,12 +1,11 @@
 
-export const TASK_TYPES = {
-  TEXT: "text",
-  MULTILINE: "multiline",
-  NUMBER: "number",
-};
-
+export enum TASK_TYPES {
+  TEXT = "TEXT",
+  NUMBER = "NUMBER",
+  TEXT_MULTILINE = "TEXT_MULTILINE",
+}
 export const TASK_TYPES_NAMES = {
   TEXT: "Text",
-  MULTILINE: "Big text",
+  TEXT_MULTILINE: "Big text",
   NUMBER: "Number",
 };

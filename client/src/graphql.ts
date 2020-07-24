@@ -8,3 +8,13 @@ export const getTasks = gql`
         }
     }
 `;
+
+export const createTask = gql`
+    mutation createTask($NewTaskInput:NewTaskInput!){
+        addTask(newTaskData:$NewTaskInput){
+        id 
+        description
+        type
+        }
+    }
+`;

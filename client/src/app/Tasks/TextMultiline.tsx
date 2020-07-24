@@ -20,7 +20,7 @@ function TextMultiline({
       onDeletion={onDeletion}
       checked={checked}
       onCheck={onCheck}
-      taskType={TASK_TYPES_NAMES.MULTILINE}
+      taskType={TASK_TYPES_NAMES.TEXT_MULTILINE}
       pin={
         <FiberManualRecordRoundedIcon style={style} />
       }

@@ -8,22 +8,30 @@ import Button from "@material-ui/core/Button";
 import AddTaskStyle from "./AddTaskStyle";
 import { TaskInterface } from "./Tasks/TaskInterfaces";
 import { TASK_TYPES, TASK_TYPES_NAMES } from "./constants";
+import { useMutation } from "@apollo/client";
+import { createTask as CREATE_TASK } from "./../graphql";
 
-interface AddTaskrops {
-  handleTaskAdd: (task: TaskInterface) => void
-}
-
-function AddTask({
-  handleTaskAdd,
-}: AddTaskrops): React.ReactElement {
+function AddTask(): React.ReactElement {
   const [description, setDescription] = useState<string>("");
-  const [type, setType] = useState<string>("text");
+  const [type, setType] = useState<string>(TASK_TYPES.TEXT);
   const [error, setError] = useState<string | null>();
   const classes = AddTaskStyle();
+  const [addTask] = useMutation(CREATE_TASK);
 
   function handleTaskTypeChange(event: React.ChangeEvent<HTMLSelectElement>): void {
     setType(event.currentTarget.value);
     setDescription("");
+  }
+
+  function handleTaskAdd(description: string, type: string) {
+    addTask({
+      variables: {
+        NewTaskInput: {
+          description,
+          type,
+        }
+      }
+    })
   }
 
   function onTaskAdd() {
@@ -31,57 +39,53 @@ function AddTask({
       setError("Add a description to your to-do");
       return;
     }
-    handleTaskAdd({
-      description,
-      id: generateId(),
-      type,
-      checked: false,
-    });
+    handleTaskAdd(description, type);
+    // handleTaskAdd({
+    //   description,
+    //   id: generateId(),
+    //   type,
+    //   checked: false,
+    // });
     setDescription("");
     if (error) {
       setError(null);
     }
   }
 
-  function generateId(): string {
-    const key = new Date().valueOf();
-    return key.toString();
-  }
-
   function renderInput(type: string) {
     switch (type) {
-    case TASK_TYPES.NUMBER:
-      return (
-        <TextField
-          type={type}
-          value={description}
-          onChange={(event) => setDescription(event.currentTarget.value)}
-          error={!!error}
-        />
-      );
-    case TASK_TYPES.MULTILINE:
-      return (
-        <TextField
-          type={type}
-          value={description}
-          onChange={(event) => setDescription(event.currentTarget.value)}
-          error={!!error}
-          multiline
-          rows="4"
-          inputProps={{ maxLength: 200 }}
-        />
-      );
-    case TASK_TYPES.TEXT:
-    default:
-      return (
-        <TextField
-          type={type}
-          value={description}
-          onChange={(event) => setDescription(event.currentTarget.value)}
-          error={!!error}
-          inputProps={{ maxLength: 40 }}
-        />
-      );
+      case TASK_TYPES.NUMBER:
+        return (
+          <TextField
+            type={type}
+            value={description}
+            onChange={(event) => setDescription(event.currentTarget.value)}
+            error={!!error}
+          />
+        );
+      case TASK_TYPES.TEXT_MULTILINE:
+        return (
+          <TextField
+            type={type}
+            value={description}
+            onChange={(event) => setDescription(event.currentTarget.value)}
+            error={!!error}
+            multiline
+            rows="4"
+            inputProps={{ maxLength: 200 }}
+          />
+        );
+      case TASK_TYPES.TEXT:
+      default:
+        return (
+          <TextField
+            type={type}
+            value={description}
+            onChange={(event) => setDescription(event.currentTarget.value)}
+            error={!!error}
+            inputProps={{ maxLength: 40 }}
+          />
+        );
     }
   }
 
@@ -114,9 +118,9 @@ function AddTask({
                 {TASK_TYPES_NAMES.TEXT}
                 {" "}
               </option>
-              <option value={TASK_TYPES.MULTILINE}>
+              <option value={TASK_TYPES.TEXT_MULTILINE}>
                 {" "}
-                {TASK_TYPES_NAMES.MULTILINE}
+                {TASK_TYPES_NAMES.TEXT_MULTILINE}
                 {" "}
               </option>
               <option value={TASK_TYPES.NUMBER}>

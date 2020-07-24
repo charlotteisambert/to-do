@@ -12,19 +12,13 @@ import Task from "./Task";
 
 function ToDoList(): React.ReactElement {
   const classes = ToDoListStyle();
-  const [tasks, setTasks] = useState<TaskInterface[]>([]);
   const { loading, error, data } = useQuery(GET_TASKS);
-
-  function handleTaskAdd(newTask: TaskInterface): void {
-    const newTasks: TaskInterface[] = [...tasks, newTask];
-    setTasks(newTasks);
-  }
-
+console.log(data)
   if (data) {
     return (
       <Grid container>
         <Grid container item sm={12}>
-          <AddTask handleTaskAdd={handleTaskAdd} />
+          <AddTask />
         </Grid>
         <Grid container item sm={12} justify="center" className={classes.wrapperTasks}>
           {error && <Typography variant="body1" color="textPrimary" >error</Typography>}

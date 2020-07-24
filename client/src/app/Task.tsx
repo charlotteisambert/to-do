@@ -11,6 +11,7 @@ interface TaskProps {
 }
 
 function Task({ task }: TaskProps): React.ReactElement {
+    console.log(task)
     function renderTask(task: TaskInterface) {
         switch (task.type) {
             case TASK_TYPES.NUMBER:
@@ -22,7 +23,7 @@ function Task({ task }: TaskProps): React.ReactElement {
                         onCheck={() => handleCheck(task.id)}
                     />
                 );
-            case TASK_TYPES.MULTILINE:
+            case TASK_TYPES.TEXT_MULTILINE:
                 return (
                     <TextMultiline
                         description={task.description}
