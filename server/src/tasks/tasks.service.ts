@@ -26,4 +26,8 @@ export class TasksService {
         return createdCat.save();
     }
 
+    async deleteOne(id: string): Promise<Task> {
+        return this.taskModel.findByIdAndRemove(id).exec();
+    }
+
 }

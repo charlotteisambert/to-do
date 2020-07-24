@@ -6,7 +6,6 @@ import NativeSelect from "@material-ui/core/NativeSelect";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import AddTaskStyle from "./AddTaskStyle";
-import { TaskInterface } from "./Tasks/TaskInterfaces";
 import { TASK_TYPES, TASK_TYPES_NAMES } from "./constants";
 import { useMutation } from "@apollo/client";
 import { createTask as CREATE_TASK } from "./../graphql";

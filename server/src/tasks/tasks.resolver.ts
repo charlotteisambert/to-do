@@ -33,4 +33,10 @@ export class TasksResolver {
         return task;
     }
 
+    @Mutation(returns => Task)
+    async deleteTask(@Args('id') id: string): Promise<Task> {
+        const task = await this.tasksService.deleteOne(id);
+        return task;
+    }
+
 }
