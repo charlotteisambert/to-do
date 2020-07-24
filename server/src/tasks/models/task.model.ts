@@ -20,4 +20,7 @@ export class Task {
 
     @Field(type => TaskType)
     type: TaskType;
+
+    @Field()
+    checked: Boolean;
 }

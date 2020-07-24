@@ -6,6 +6,7 @@ type Task {
   id: ID!
   description: String!
   type: TaskType!
+  checked: Boolean!
 }
 
 enum TaskType {
@@ -27,4 +28,5 @@ type Mutation {
 input NewTaskInput {
   description: String!
   type: String!
+  checked: Boolean = false
 }

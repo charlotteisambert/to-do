@@ -8,4 +8,7 @@ export class NewTaskInput {
 
     @Field()
     type: TaskType;
+
+    @Field()
+    checked?: Boolean = false;
 }

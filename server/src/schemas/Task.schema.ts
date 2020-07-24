@@ -3,4 +3,5 @@ import * as mongoose from 'mongoose';
 export const TaskSchema = new mongoose.Schema({
   description: String,
   type: String,
+  checked: Boolean,
 });

@@ -5,4 +5,5 @@ export interface Task extends Document {
     readonly id: string;
     readonly description: string;
     readonly type: TaskType;
+    readonly checked: Boolean;
 }
