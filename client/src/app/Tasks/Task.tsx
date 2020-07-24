@@ -7,6 +7,7 @@ import style from "./TaskStyle";
 import { useMutation } from "@apollo/client";
 import {
   deleteTask as DELETE_TASK,
+  checkTask as CHECK_TASK,
   getTasks as GET_TASKS,
 } from "./../../graphql";
 import { TaskInterface } from "./TaskInterfaces";
@@ -30,18 +31,28 @@ function Task({
 
   const [deleteTask] = useMutation(DELETE_TASK, {
     update(cache, { data }) {
-      updateCache(cache, data);
+      updateCache(cache, data, (tasks) => tasks.filter((task: TaskInterface) => task.id !== data.deleteTask.id));
     },
   });
 
-  function updateCache(cache: any, data: any) {
+  const [checkTask] = useMutation(CHECK_TASK, {
+    update(cache, { data }) {
+      updateCache(cache, data, (tasks) => tasks.map((task: TaskInterface) => {
+        if (task.id === data.checkTask.id) {
+          return data.checkTask;
+        } else return task;
+      }));
+    },
+  });
+
+  function updateCache(cache: any, data: any, updateTasks: (task: TaskInterface[]) => TaskInterface[]) {
     const tasksData = cache.readQuery({
       query: GET_TASKS,
     });
     cache.writeQuery({
       query: GET_TASKS,
       data: {
-        tasks: tasksData.tasks.filter((task: TaskInterface) => task.id !== data.deleteTask.id),
+        tasks: updateTasks(tasksData.tasks),
       },
     });
   }
@@ -55,6 +66,12 @@ function Task({
   }
 
   function onCheck() {
+    checkTask({
+      variables: {
+        id,
+        checked: !checked,
+      }
+    })
   }
 
   return (

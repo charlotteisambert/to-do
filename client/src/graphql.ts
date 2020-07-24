@@ -30,3 +30,14 @@ export const deleteTask = gql`
     }
 `;
 
+export const checkTask = gql`
+    mutation($id: String!, $checked: Boolean!) {
+        checkTask(id: $id, checked: $checked) {
+            id
+            description
+            type
+            checked
+        }
+    }
+`;
+
