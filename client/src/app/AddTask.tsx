@@ -5,13 +5,13 @@ import FormControl from "@material-ui/core/FormControl";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { useMutation } from "@apollo/client";
 import AddTaskStyle from "./AddTaskStyle";
 import { TASK_TYPES, TASK_TYPES_NAMES } from "./constants";
-import { useMutation } from "@apollo/client";
 import {
   getTasks as GET_TASKS,
   createTask as CREATE_TASK,
-} from "./../graphql";
+} from "../graphql";
 
 function AddTask(): React.ReactElement {
   const [description, setDescription] = useState<string>("");
@@ -47,9 +47,9 @@ function AddTask(): React.ReactElement {
         NewTaskInput: {
           description,
           type,
-        }
-      }
-    })
+        },
+      },
+    });
   }
 
   function onTaskAdd() {
@@ -72,38 +72,38 @@ function AddTask(): React.ReactElement {
 
   function renderInput(type: string) {
     switch (type) {
-      case TASK_TYPES.NUMBER:
-        return (
-          <TextField
-            type={type}
-            value={description}
-            onChange={(event) => setDescription(event.currentTarget.value)}
-            error={!!error}
-          />
-        );
-      case TASK_TYPES.TEXT_MULTILINE:
-        return (
-          <TextField
-            type={type}
-            value={description}
-            onChange={(event) => setDescription(event.currentTarget.value)}
-            error={!!error}
-            multiline
-            rows="4"
-            inputProps={{ maxLength: 200 }}
-          />
-        );
-      case TASK_TYPES.TEXT:
-      default:
-        return (
-          <TextField
-            type={type}
-            value={description}
-            onChange={(event) => setDescription(event.currentTarget.value)}
-            error={!!error}
-            inputProps={{ maxLength: 40 }}
-          />
-        );
+    case TASK_TYPES.NUMBER:
+      return (
+        <TextField
+          type={type}
+          value={description}
+          onChange={(event) => setDescription(event.currentTarget.value)}
+          error={!!error}
+        />
+      );
+    case TASK_TYPES.TEXT_MULTILINE:
+      return (
+        <TextField
+          type={type}
+          value={description}
+          onChange={(event) => setDescription(event.currentTarget.value)}
+          error={!!error}
+          multiline
+          rows="4"
+          inputProps={{ maxLength: 200 }}
+        />
+      );
+    case TASK_TYPES.TEXT:
+    default:
+      return (
+        <TextField
+          type={type}
+          value={description}
+          onChange={(event) => setDescription(event.currentTarget.value)}
+          error={!!error}
+          inputProps={{ maxLength: 40 }}
+        />
+      );
     }
   }
 
@@ -163,7 +163,6 @@ function AddTask(): React.ReactElement {
         </Grid>
       </Grid>
     </Grid>
-
 
   );
 }

@@ -3,13 +3,13 @@ import { Grid } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import DeleteOutlineOutlinedIcon from "@material-ui/icons/DeleteOutlineOutlined";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
-import style from "./TaskStyle";
 import { useMutation } from "@apollo/client";
+import style from "./TaskStyle";
 import {
   deleteTask as DELETE_TASK,
   checkTask as CHECK_TASK,
   getTasks as GET_TASKS,
-} from "./../../graphql";
+} from "../../graphql";
 import { TaskInterface } from "./TaskInterfaces";
 
 export interface TaskProps {
@@ -40,7 +40,7 @@ function Task({
       updateCache(cache, data, (tasks) => tasks.map((task: TaskInterface) => {
         if (task.id === data.checkTask.id) {
           return data.checkTask;
-        } else return task;
+        } return task;
       }));
     },
   });
@@ -61,8 +61,8 @@ function Task({
     deleteTask({
       variables: {
         id,
-      }
-    })
+      },
+    });
   }
 
   function onCheck() {
@@ -70,8 +70,8 @@ function Task({
       variables: {
         id,
         checked: !checked,
-      }
-    })
+      },
+    });
   }
 
   return (

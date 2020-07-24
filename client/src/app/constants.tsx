@@ -1,4 +1,3 @@
-
 export enum TASK_TYPES {
   TEXT = "TEXT",
   NUMBER = "NUMBER",
