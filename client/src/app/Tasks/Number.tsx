@@ -10,20 +10,18 @@ const style = {
 
 function Number({
   description,
-  onDeletion,
   checked,
-  onCheck,
+  id,
 }: TaskProps): React.ReactElement {
   return (
     <Task
       description={`Your number is : ${description}`}
-      onDeletion={onDeletion}
       checked={checked}
-      onCheck={onCheck}
       taskType={TASK_TYPES_NAMES.NUMBER}
       pin={
         <StopRoundedIcon style={style} />
       }
+      id={id}
     />
   );
 }

@@ -11,25 +11,22 @@ interface TaskProps {
 }
 
 function Task({ task }: TaskProps): React.ReactElement {
-    console.log(task)
     function renderTask(task: TaskInterface) {
         switch (task.type) {
             case TASK_TYPES.NUMBER:
                 return (
                     <Number
                         description={task.description}
-                        onDeletion={() => handleDeletion(task.id)}
                         checked={task.checked}
-                        onCheck={() => handleCheck(task.id)}
+                        id={task.id}
                     />
                 );
             case TASK_TYPES.TEXT_MULTILINE:
                 return (
                     <TextMultiline
                         description={task.description}
-                        onDeletion={() => handleDeletion(task.id)}
                         checked={task.checked}
-                        onCheck={() => handleCheck(task.id)}
+                        id={task.id}
                     />
                 );
             case TASK_TYPES.TEXT:
@@ -37,9 +34,8 @@ function Task({ task }: TaskProps): React.ReactElement {
                 return (
                     <Text
                         description={task.description}
-                        onDeletion={() => handleDeletion(task.id)}
                         checked={task.checked}
-                        onCheck={() => handleCheck(task.id)}
+                        id={task.id}
                     />
                 );
         }

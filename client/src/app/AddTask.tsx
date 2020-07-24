@@ -8,8 +8,10 @@ import Button from "@material-ui/core/Button";
 import AddTaskStyle from "./AddTaskStyle";
 import { TASK_TYPES, TASK_TYPES_NAMES } from "./constants";
 import { useMutation } from "@apollo/client";
-import { createTask as CREATE_TASK } from "./../graphql";
-import { getTasks as GET_TASKS } from "./../graphql";
+import {
+  getTasks as GET_TASKS,
+  createTask as CREATE_TASK,
+} from "./../graphql";
 
 function AddTask(): React.ReactElement {
   const [description, setDescription] = useState<string>("");

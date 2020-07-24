@@ -19,3 +19,13 @@ export const createTask = gql`
         }
     }
 `;
+
+export const deleteTask = gql`
+    mutation deleteTask($id: String!) {
+        deleteTask(id: $id) {
+            id
+            description
+        }
+    }
+`;
+

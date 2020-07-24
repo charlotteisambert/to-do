@@ -10,20 +10,18 @@ const style = {
 
 function TextMultiline({
   description,
-  onDeletion,
   checked,
-  onCheck,
+  id,
 }: TaskProps): React.ReactElement {
   return (
     <Task
       description={description}
-      onDeletion={onDeletion}
       checked={checked}
-      onCheck={onCheck}
       taskType={TASK_TYPES_NAMES.TEXT_MULTILINE}
       pin={
         <FiberManualRecordRoundedIcon style={style} />
       }
+      id={id}
     />
   );
 }
