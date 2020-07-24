@@ -9,41 +9,44 @@ import TextMultiline from "./Tasks/TextMultiline";
 import { TaskInterface } from "./Tasks/TaskInterfaces";
 import ToDoListStyle from "./ToDoListStyle";
 import { TASK_TYPES } from "./constants";
+import { useQuery } from "@apollo/client";
+import { getTasks as GET_TASKS } from "./../graphql";
 
 function ToDoList(): React.ReactElement {
   const classes = ToDoListStyle();
   const [tasks, setTasks] = useState<TaskInterface[]>([]);
+  const { loading, error, data } = useQuery(GET_TASKS);
 
   function renderTask(task: TaskInterface) {
     switch (task.type) {
-    case TASK_TYPES.NUMBER:
-      return (
-        <Number
-          description={task.description}
-          onDeletion={() => handleDeletion(task.id)}
-          checked={task.checked}
-          onCheck={() => handleCheck(task.id)}
-        />
-      );
-    case TASK_TYPES.MULTILINE:
-      return (
-        <TextMultiline
-          description={task.description}
-          onDeletion={() => handleDeletion(task.id)}
-          checked={task.checked}
-          onCheck={() => handleCheck(task.id)}
-        />
-      );
-    case TASK_TYPES.TEXT:
-    default:
-      return (
-        <Text
-          description={task.description}
-          onDeletion={() => handleDeletion(task.id)}
-          checked={task.checked}
-          onCheck={() => handleCheck(task.id)}
-        />
-      );
+      case TASK_TYPES.NUMBER:
+        return (
+          <Number
+            description={task.description}
+            onDeletion={() => handleDeletion(task.id)}
+            checked={task.checked}
+            onCheck={() => handleCheck(task.id)}
+          />
+        );
+      case TASK_TYPES.MULTILINE:
+        return (
+          <TextMultiline
+            description={task.description}
+            onDeletion={() => handleDeletion(task.id)}
+            checked={task.checked}
+            onCheck={() => handleCheck(task.id)}
+          />
+        );
+      case TASK_TYPES.TEXT:
+      default:
+        return (
+          <Text
+            description={task.description}
+            onDeletion={() => handleDeletion(task.id)}
+            checked={task.checked}
+            onCheck={() => handleCheck(task.id)}
+          />
+        );
     }
   }
 
@@ -69,20 +72,30 @@ function ToDoList(): React.ReactElement {
     setTasks(newTasks);
   }
 
-  return (
-    <Grid container>
-      <Grid container item sm={12}>
-        <AddTask handleTaskAdd={handleTaskAdd} />
+  if (loading) {
+    return <>Loading...</>
+  }
+  if (error) {
+    return <>{error}</>
+  }
+  if (data) {
+    console.log(data)
+    return (
+      <Grid container>
+        <Grid container item sm={12}>
+          <AddTask handleTaskAdd={handleTaskAdd} />
+        </Grid>
+        <Grid container item sm={12} justify="center" className={classes.wrapperTasks}>
+          {data.tasks.map((task:any) => (
+            <Grid container item sm={12} key={task.id} className={classes.wrapperTask}>
+              {renderTask(task)}
+            </Grid>
+          ))}
+        </Grid>
       </Grid>
-      <Grid container item sm={12} justify="center" className={classes.wrapperTasks}>
-        {tasks.map((task) => (
-          <Grid container item sm={12} key={task.id} className={classes.wrapperTask}>
-            {renderTask(task)}
-          </Grid>
-        ))}
-      </Grid>
-    </Grid>
-  );
+    );
+  }
+  return <></>
 }
 
 export default ToDoList;

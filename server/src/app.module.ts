@@ -11,7 +11,6 @@ import { URL } from "./constants";
     TasksModule,
     DatabaseModule,
     GraphQLModule.forRoot({
-      installSubscriptionHandlers: true,
       autoSchemaFile: 'schema.gql',
     }),
     TypeOrmModule.forRoot({

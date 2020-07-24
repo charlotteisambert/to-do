@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://charlotteisambert.github.io/to-do",
   "dependencies": {
+    "@apollo/client": "^3.0.2",
     "@material-ui/core": "^4.9.7",
     "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^4.2.4",
@@ -14,6 +15,7 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "gh-pages": "^3.0.0",
+    "graphql": "^15.3.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.4.0",

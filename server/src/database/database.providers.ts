@@ -5,6 +5,6 @@ export const databaseProviders = [
   {
     provide: DATABASE_CONNECTION,
     useFactory: (): Promise<typeof mongoose> =>
-      mongoose.connect(URL),
+      mongoose.connect(URL, { useNewUrlParser: true }),
   },
 ];
